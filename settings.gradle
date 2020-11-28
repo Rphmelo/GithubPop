@@ -1,0 +1,2 @@
+rootProject.name='GithubPop'
+include ':app'
