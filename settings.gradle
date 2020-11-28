@@ -1,2 +1,3 @@
 rootProject.name='GithubPop'
 include ':app'
+include ':domain'
