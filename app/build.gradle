@@ -26,6 +26,7 @@ android {
 
 dependencies {
     implementation project(path: ':domain')
+    implementation project(path: ':data')
 
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependecies
