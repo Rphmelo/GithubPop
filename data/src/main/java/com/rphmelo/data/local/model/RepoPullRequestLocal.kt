@@ -11,5 +11,5 @@ data class RepoPullRequestLocal(
     var title: String,
     var body: String,
     var state: String,
-    @Embedded var user: GitHubUser
+    @Embedded(prefix = "userPullRequest") var user: GitHubUser
 )

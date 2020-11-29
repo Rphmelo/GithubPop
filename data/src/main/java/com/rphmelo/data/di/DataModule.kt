@@ -1,7 +1,7 @@
 package com.rphmelo.data.di
 
-import com.rphmelo.data.repository.RepoRepository
 import com.rphmelo.data.repository.RepoRepositoryImpl
+import com.rphmelo.domain.repository.RepoRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {

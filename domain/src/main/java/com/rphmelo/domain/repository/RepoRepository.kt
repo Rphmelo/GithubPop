@@ -1,4 +1,4 @@
-package com.rphmelo.data.repository
+package com.rphmelo.domain.repository
 
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.domain.entities.RepoPullRequest

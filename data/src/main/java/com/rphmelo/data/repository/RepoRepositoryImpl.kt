@@ -6,6 +6,7 @@ import com.rphmelo.data.remote.source.RepoPullRequestRemoteDataSource
 import com.rphmelo.data.remote.source.RepoRemoteDataSource
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.domain.entities.RepoPullRequest
+import com.rphmelo.domain.repository.RepoRepository
 import io.reactivex.Observable
 
 class RepoRepositoryImpl(

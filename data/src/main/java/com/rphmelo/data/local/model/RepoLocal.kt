@@ -10,7 +10,7 @@ data class RepoLocal(
     @PrimaryKey var id: Int = 0,
     var name: String,
     var fullName: String,
-    @Embedded var owner: GitHubUser,
+    @Embedded(prefix = "repoOwner") var owner: GitHubUser,
     var description: String,
     var forksCount: Int,
     var starsCount: Int
