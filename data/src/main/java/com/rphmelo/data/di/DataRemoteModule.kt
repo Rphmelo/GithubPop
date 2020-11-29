@@ -1,5 +1,6 @@
 package com.rphmelo.data.di
 
+import com.rphmelo.data.BuildConfig
 import com.rphmelo.data.remote.api.GitHubApi
 import com.rphmelo.data.remote.mapper.RepoMapper
 import com.rphmelo.data.remote.mapper.RepoPullRequestMapper
@@ -8,7 +9,6 @@ import com.rphmelo.data.remote.source.RepoPullRequestRemoteDataSourceImpl
 import com.rphmelo.data.remote.source.RepoRemoteDataSource
 import com.rphmelo.data.remote.source.RepoRemoteDataSourceImpl
 import okhttp3.OkHttpClient
-import org.koin.android.BuildConfig
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,7 +19,7 @@ val remoteDataSourceModule = module {
     factory { providesOkHttpClient() }
     single { createWebService<GitHubApi>(
         okHttpClient = get(),
-        url =  BuildConfig.FLAVOR
+        url =  BuildConfig.API_URL
     ) }
     factory { RepoMapper() }
     factory { RepoPullRequestMapper() }

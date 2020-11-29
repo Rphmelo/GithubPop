@@ -13,6 +13,8 @@ android {
     defaultConfig {
         minSdkVersion globalConfig["minSDK"]
         targetSdkVersion globalConfig["targetSDK"]
+
+        buildConfigField "String", "API_URL", "\"https://api.github.com/\""
     }
 
     compileOptions {
