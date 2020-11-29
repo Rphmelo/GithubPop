@@ -16,6 +16,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,14 +33,17 @@ dependencies {
     implementation project(path: ':data')
 
     def dependencies = rootProject.ext.dependencies
-    def testDependencies = rootProject.ext.testDependecies
+    def testDependencies = rootProject.ext.testDependencies
 
     implementation dependencies.appCompact
     implementation dependencies.constraintlayout
 
     testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.mockitoInline
+    testImplementation testDependencies.mockitoKotlin
     androidTestImplementation testDependencies.runner
-    androidTestImplementation testDependencies.espresso
+    androidTestImplementation testDependencies.androidxJunitVersion
 
     implementation dependencies.appCompact
     implementation dependencies.cardView

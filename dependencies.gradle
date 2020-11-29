@@ -36,8 +36,13 @@ ext {
 
     //Test
     junitVersion = '4.12'
+    androidxJunitVersion = '1.1.1'
     espressoVersion = '3.1.1'
-    runnerVersion = '1.1.1'
+    runnerVersion = '1.2.0'
+    mockitoCoreVersion = '2.9.0'
+    mockitoInlineVersion = '2.13.0'
+    mockitoKotlinVersion = "1.6.0"
+    robolectricVersion = '4.4'
 
     materialVersion = '1.1.0'
 
@@ -72,9 +77,14 @@ ext {
             roomKtx               : "androidx.room:room-ktx:$roomVersion"
     ]
 
-    testDependecies = [
+    testDependencies = [
             junit                 : "junit:junit:$junitVersion",
+            androidxJunitVersion  : "androidx.test.ext:junit:$androidxJunitVersion",
+            mockitoCore           : "org.mockito:mockito-core:$mockitoCoreVersion",
+            mockitoInline         : "org.mockito:mockito-inline:$mockitoInlineVersion",
+            mockitoKotlin         : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
             espresso              : "androidx.test.espresso:espresso-core:$espressoVersion",
-            runner                : "androidx.test:runner:$runnerVersion"
+            runner                : "androidx.test:runner:$runnerVersion",
+            robolectric           : "org.robolectric:robolectric:$robolectricVersion",
     ]
 }

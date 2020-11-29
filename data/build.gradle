@@ -14,7 +14,17 @@ android {
         minSdkVersion globalConfig["minSDK"]
         targetSdkVersion globalConfig["targetSDK"]
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
         buildConfigField "String", "API_URL", "\"https://api.github.com/\""
+        buildConfigField "String", "GIT_POP_DB_NAME", "\"GitPop.db\""
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
     }
 
     compileOptions {
@@ -32,11 +42,21 @@ android {
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
 
     implementation project(":domain")
 
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.mockitoInline
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.androidxJunitVersion
+    testImplementation testDependencies.robolectric
+    androidTestImplementation testDependencies.runner
+
     implementation dependencies.kotlin
     implementation dependencies.rxJava
+    implementation dependencies.rxAndroid
 
     implementation dependencies.retrofit
     implementation dependencies.retrofitRxAdapter
