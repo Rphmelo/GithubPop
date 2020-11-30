@@ -32,7 +32,7 @@ class FragmentHelper(
     private val Fragment.name: String
         get() = this::class.java.simpleName
 
-    fun add(fragment: Fragment, clearBackStack: Boolean = true) {
+    fun add(fragment: Fragment, clearBackStack: Boolean = false) {
         withContainerId {
             val tag = fragment.name
 

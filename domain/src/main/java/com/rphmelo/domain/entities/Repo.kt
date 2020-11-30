@@ -1,5 +1,7 @@
 package com.rphmelo.domain.entities
 
+import java.io.Serializable
+
 data class Repo(
     var id: Long? = null,
     var name: String? = null,
@@ -8,4 +10,4 @@ data class Repo(
     var description: String? = null,
     var forksCount: Int? = null,
     var starsCount: Int? = null
-)
+) : Serializable

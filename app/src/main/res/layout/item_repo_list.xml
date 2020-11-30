@@ -6,10 +6,11 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/bgBox"
+    android:clickable="true"
+    android:focusable="true"
     app:cardCornerRadius="@dimen/space_sub_s"
-    app:cardElevation="@dimen/space_s"
-    app:cardPreventCornerOverlap="true"
-    android:layout_marginBottom="@dimen/space_s">
+    app:cardElevation="@dimen/space_sub_s"
+    app:cardPreventCornerOverlap="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
 
         <com.rphmelo.design.components.UserInfoVertical
             android:id="@+id/uivRepoItem"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />

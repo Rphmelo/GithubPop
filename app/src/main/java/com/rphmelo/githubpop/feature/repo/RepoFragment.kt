@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.rphmelo.design.extensions.gone
 import com.rphmelo.design.extensions.visible
 import com.rphmelo.domain.entities.Repo
@@ -21,6 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class RepoFragment : Fragment() {
 
     private val viewModel: RepoViewModel by viewModel()
+    private val repoListAdapter by lazy { RepoListAdapter() }
+
     private var stateView: Int by StateViewDelegate(
         STATE_VIEW_LOADING to ::showLoading,
         STATE_VIEW_SUCCESS to ::showList,
@@ -44,15 +47,25 @@ class RepoFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun loadRepoPullRequestFragment(repoName: String) {
-        fragmentTransaction(R.id.flContainer) {
-            add(RepoPullRequestFragment.newInstance(repoName))
+    private fun configureRepoList(repoList: List<Repo>) {
+        stateView = STATE_VIEW_SUCCESS
+        with(rvRepoList) {
+            val dividerItemDecoration = DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+            addItemDecoration(dividerItemDecoration)
+            setHasFixedSize(true)
+            adapter = repoListAdapter.apply {
+                addAll(repoList, ::onRepoItemClick)
+            }
         }
     }
 
-    private fun configureRepoList(repoList: List<Repo>) {
-        stateView = STATE_VIEW_SUCCESS
-        Toast.makeText(context, repoList[0].name, Toast.LENGTH_LONG).show()
+    private fun onRepoItemClick(item: Repo) {
+        fragmentTransaction(R.id.flContainer) {
+            add(RepoPullRequestFragment.newInstance(item))
+        }
     }
 
     private fun setError(throwable: Throwable) {

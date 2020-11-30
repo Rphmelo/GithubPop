@@ -16,11 +16,11 @@ class RepoInfo @JvmOverloads constructor(
         inflate(R.layout.view_repo_info)
     }
 
-    fun setUserName(userName: String?) {
+    fun setTitle(userName: String?) {
         setTextViewText(tvTitle, userName)
     }
 
-    fun setUserFullName(userFullName: String?) {
+    fun setDescription(userFullName: String?) {
         setTextViewText(tvDescription, userFullName)
     }
 

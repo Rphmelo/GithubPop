@@ -23,19 +23,16 @@ class RepoActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-
         val currentFragment = supportFragmentManager.findFragmentById(R.id.flContainer)
 
         (currentFragment as? RepoPullRequestFragment)?.let {
             toolbar.apply {
                 title = getString(R.string.repo_screen_title)
                 navigationIcon = null
-
             }
         }
 
-        fragmentTransaction { pop {} }
+        fragmentTransaction { pop { finish() } }
     }
 
     private fun loadRepoFragment() {

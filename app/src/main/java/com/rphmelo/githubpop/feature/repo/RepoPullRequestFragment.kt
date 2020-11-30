@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.rphmelo.domain.entities.Repo
 import com.rphmelo.githubpop.R
 import kotlinx.android.synthetic.main.activity_repo.*
 
 class RepoPullRequestFragment : Fragment() {
 
-    private val repoName by lazy { arguments?.getString(REPO_NAME_KEY) }
+    private val repoItem by lazy { arguments?.getSerializable(REPO_ITEM_KEY) as? Repo }
 
     companion object {
-        private const val REPO_NAME_KEY = "REPO_NAME_KEY"
+        private const val REPO_ITEM_KEY = "REPO_ITEM_KEY"
 
-        fun newInstance(repoName: String) = RepoPullRequestFragment().apply {
+        fun newInstance(repoItem: Repo) = RepoPullRequestFragment().apply {
             arguments = Bundle().apply {
-                putString(REPO_NAME_KEY, repoName)
+                putSerializable(REPO_ITEM_KEY, repoItem)
             }
         }
     }
@@ -33,7 +34,7 @@ class RepoPullRequestFragment : Fragment() {
 
     private fun setToolbar() {
         activity?.toolbar?.apply {
-            title = repoName ?: "Repository name"
+            title = repoItem?.name ?: "Repository name"
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener { activity?.onBackPressed() }
         }
