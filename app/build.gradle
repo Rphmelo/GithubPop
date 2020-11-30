@@ -32,20 +32,19 @@ android {
 dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
+    implementation project(path: ':design')
 
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
 
     implementation dependencies.appCompact
-    implementation dependencies.constraintlayout
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.mockitoInline
     testImplementation testDependencies.mockitoKotlin
     androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.espresso
     androidTestImplementation testDependencies.androidxJunitVersion
 
     implementation dependencies.appCompact
