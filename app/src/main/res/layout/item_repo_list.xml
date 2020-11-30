@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/bgBox"
+    app:cardCornerRadius="@dimen/space_sub_s"
+    app:cardElevation="@dimen/space_s"
+    app:cardPreventCornerOverlap="true"
+    android:layout_marginBottom="@dimen/space_s">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.rphmelo.design.components.UserInfoVertical
+            android:id="@+id/uivRepoItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <com.rphmelo.design.components.RepoInfo
+            android:id="@+id/riRepoItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/uivRepoItem"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/space_s"
+            app:layout_constraintTop_toBottomOf="@+id/riRepoItem"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+            <com.rphmelo.design.components.FooterInfo
+                android:id="@+id/fiForkCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.rphmelo.design.components.FooterInfo
+                android:id="@+id/fiStarsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sub_m"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

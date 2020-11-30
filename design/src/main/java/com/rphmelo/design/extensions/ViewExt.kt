@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.extension
+package com.rphmelo.design.extensions
 
 import android.view.View
 

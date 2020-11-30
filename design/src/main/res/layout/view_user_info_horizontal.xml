@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAvatarUser"
+        android:layout_width="@dimen/space_forty_four"
+        android:layout_height="@dimen/space_forty_four"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/llUserName"
+        app:layout_constraintTop_toTopOf="@+id/llUserName"
+        app:layout_constraintBottom_toBottomOf="@+id/llUserName"
+        tools:src="@tools:sample/backgrounds/scenic"/>
+
+    <LinearLayout
+        android:id="@+id/llUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/space_sub_m"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatarUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Label"
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_six"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/textPrimary"
+            tools:text="Rphmelo"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Label"
+            android:id="@+id/tvUserFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/textSecondary"
+            tools:text="Rphmelo/GitHubPop"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

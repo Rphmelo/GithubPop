@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.rphmelo.design.extensions.gone
+import com.rphmelo.design.extensions.visible
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.githubpop.R
-import com.rphmelo.githubpop.extension.gone
-import com.rphmelo.githubpop.extension.visible
 import com.rphmelo.githubpop.feature.repo.viewModel.RepoViewModel
 import com.rphmelo.githubpop.feature.repo.viewModel.ViewState
 import com.rphmelo.githubpop.feature.utils.StateViewDelegate

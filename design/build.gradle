@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -37,6 +38,9 @@ dependencies {
     implementation dependencies.cardView
     implementation dependencies.recyclerView
     implementation dependencies.material
+
+    implementation dependencies.glide
+    kapt dependencies.glideCompiler
 
     implementation dependencies.ktx
 

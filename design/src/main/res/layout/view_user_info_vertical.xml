@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAvatarUser"
+        android:layout_width="@dimen/space_forty_four"
+        android:layout_height="@dimen/space_forty_four"
+        app:layout_constraintStart_toStartOf="@+id/tvUserName"
+        app:layout_constraintEnd_toEndOf="@+id/tvUserName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Label"
+        android:id="@+id/tvUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_six"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/textPrimary"
+        app:layout_constraintStart_toStartOf="@+id/tvUserFullName"
+        app:layout_constraintEnd_toEndOf="@+id/tvUserFullName"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvatarUser"
+        tools:text="Rphmelo"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Label"
+        android:id="@+id/tvUserFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/textSecondary"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+        tools:text="Rphmelo/GitHubPop"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
