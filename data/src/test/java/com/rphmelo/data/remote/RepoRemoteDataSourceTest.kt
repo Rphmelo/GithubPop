@@ -6,10 +6,12 @@ import com.rphmelo.data.remote.api.GitHubApi
 import com.rphmelo.data.remote.mapper.RepoMapper
 import com.rphmelo.data.remote.model.GitHubUserPayload
 import com.rphmelo.data.remote.model.RepoPayload
+import com.rphmelo.data.remote.model.ResponsePayload
 import com.rphmelo.data.remote.source.RepoRemoteDataSource
 import com.rphmelo.data.remote.source.RepoRemoteDataSourceImpl
 import com.rphmelo.data.rules.RxSchedulersOverrideRule
 import io.reactivex.Observable
+import okhttp3.Response
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -42,15 +44,16 @@ class RepoRemoteDataSourceTest {
         val gitHubUser = GitHubUserPayload(11, "https://www.avatar.com", "Rphmelo")
         val repoFake = RepoPayload(1, "GitPop", "GitPop/Rphmelo", "An app to show repositories.", 20, 12, gitHubUser)
         val repoListFake: List<RepoPayload> = arrayListOf(repoFake)
+        val responsePayload = ResponsePayload(totalCount = 20, incompleteResults = false, items = repoListFake)
 
-        val language = "java"
+        val q = "language:java"
         val pageNumber = 1
-        whenever(githubApi.getRepos(language, pageNumber)).thenReturn(Observable.just(repoListFake))
+        whenever(githubApi.getRepos(q, pageNumber)).thenReturn(Observable.just(responsePayload))
 
-        dataSource.getRepos(language, pageNumber)
+        dataSource.getRepos(q, pageNumber)
 
         inOrder(githubApi) {
-            verify(githubApi).getRepos(language, pageNumber)
+            verify(githubApi).getRepos(q, pageNumber)
         }
     }
 }

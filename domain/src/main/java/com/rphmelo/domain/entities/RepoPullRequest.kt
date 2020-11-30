@@ -1,9 +1,9 @@
 package com.rphmelo.domain.entities
 
 data class RepoPullRequest(
-    val id: Int,
-    val title: String,
-    val body: String,
-    val state: String,
-    val user: GitHubUser
+    var id: Int? = null,
+    var title: String? = null,
+    var body: String? = null,
+    var state: String? = null,
+    var user: GitHubUser? = null
 )

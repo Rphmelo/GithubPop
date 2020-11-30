@@ -19,16 +19,16 @@ class RepoPullRequestMapper {
 
     fun mapRepoToRemote(jobs: List<RepoPullRequest>) = jobs.map { map(it) }
 
-    private fun map(payload: GitHubUserPayload) = GitHubUser(
-        id = payload.id,
-        avatarUrl = payload.avatarUrl,
-        login = payload.login
+    private fun map(payload: GitHubUserPayload?) = GitHubUser(
+        id = payload?.id,
+        avatarUrl = payload?.avatarUrl,
+        login = payload?.login
     )
 
-    private fun map(githubUser: GitHubUser) = GitHubUserPayload(
-        id = githubUser.id,
-        avatarUrl = githubUser.avatarUrl,
-        login = githubUser.login
+    private fun map(githubUser: GitHubUser?) = GitHubUserPayload(
+        id = githubUser?.id,
+        avatarUrl = githubUser?.avatarUrl,
+        login = githubUser?.login
     )
 
     private fun map(pullRequest: RepoPullRequest) = RepoPullRequestPayload(

@@ -11,23 +11,23 @@ class RepoRepositoryImpl(
     private val remoteDataSource: RepoRemoteDataSource
 ) : RepoRepository {
 
-    override fun getRepos(language: String, pageNumber: Int, forceUpdate: Boolean): Observable<List<Repo>> {
+    override fun getRepos(q: String, pageNumber: Int, forceUpdate: Boolean): Observable<List<Repo>> {
         return if (forceUpdate) {
-            getReposRemote(language, pageNumber, forceUpdate)
+            getReposRemote(q, pageNumber, forceUpdate)
         }
         else {
             localDataSource.getRepos()
                 .flatMap { repoList ->
                     when {
-                        repoList.isEmpty() -> getReposRemote(language, pageNumber, false)
+                        repoList.isEmpty() -> getReposRemote(q, pageNumber, false)
                         else -> Observable.just(repoList)
                     }
                 }
         }
     }
 
-    private fun getReposRemote(language: String, pageNumber: Int, isUpdate: Boolean): Observable<List<Repo>> {
-        return remoteDataSource.getRepos(language, pageNumber)
+    private fun getReposRemote(q: String, pageNumber: Int, isUpdate: Boolean): Observable<List<Repo>> {
+        return remoteDataSource.getRepos(q, pageNumber)
             .flatMap { repoList ->
                 if (isUpdate) {
                     localDataSource.updateAll(repoList)

@@ -4,5 +4,5 @@ import com.rphmelo.domain.entities.Repo
 import io.reactivex.Observable
 
 interface RepoRemoteDataSource {
-    fun getRepos(language: String, pageNumber: Int): Observable<List<Repo>>
+    fun getRepos(q: String, pageNumber: Int): Observable<List<Repo>>
 }

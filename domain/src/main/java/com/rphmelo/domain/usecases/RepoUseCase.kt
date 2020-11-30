@@ -10,8 +10,8 @@ class RepoUseCase(
     private val scheduler: Scheduler
 ) {
 
-    fun getRepos(language: String, pageNumber: Int, forceUpdate: Boolean): Observable<List<Repo>> {
-        return repository.getRepos(language, pageNumber, forceUpdate)
+    fun getRepos(q: String, pageNumber: Int, forceUpdate: Boolean): Observable<List<Repo>> {
+        return repository.getRepos(q, pageNumber, forceUpdate)
             .subscribeOn(scheduler)
     }
 }

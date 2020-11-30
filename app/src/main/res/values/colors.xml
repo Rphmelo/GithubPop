@@ -3,4 +3,18 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="bgBox">#ffffff</color>
+    <color name="bgCanvas">#fafaff</color>
+    <color name="bgBar">#f1f2fa</color>
+    <color name="bgDisable">#e3e3eb</color>
+    <color name="bgLightest">#ffffff</color>
+    <color name="bgDarkest">#161819</color>
+    <color name="bgBorder">#505050</color>
+    <color name="bgActive">#d2d2de</color>
+    <color name="textPrimary">#de000000</color>
+    <color name="textSecondary">#99000000</color>
+    <color name="textDisable">#61000000</color>
+    <color name="textSuccess">#2e7d32</color>
+    <color name="textWarning">#fd996910</color>
 </resources>

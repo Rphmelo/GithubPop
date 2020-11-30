@@ -7,11 +7,11 @@ import com.rphmelo.domain.entities.GitHubUser
 
 @Entity(tableName = "repos")
 data class RepoLocal(
-    @PrimaryKey var id: Int = 0,
-    var name: String,
-    var fullName: String,
-    @Embedded(prefix = "repoOwner") var owner: GitHubUser,
-    var description: String,
-    var forksCount: Int,
-    var starsCount: Int
+    @PrimaryKey var id: Long? = null,
+    var name: String? = null,
+    var fullName: String? = null,
+    @Embedded(prefix = "repoOwner") var owner: GitHubUser? = null,
+    var description: String? = null,
+    var forksCount: Int? = null,
+    var starsCount: Int? = null
 )

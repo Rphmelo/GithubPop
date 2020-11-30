@@ -7,9 +7,9 @@ import com.rphmelo.domain.entities.GitHubUser
 
 @Entity(tableName = "repoPullRequest")
 data class RepoPullRequestLocal(
-    @PrimaryKey var id: Int = 0,
-    var title: String,
-    var body: String,
-    var state: String,
-    @Embedded(prefix = "userPullRequest") var user: GitHubUser
+    @PrimaryKey var id: Int? = null,
+    var title: String? = null,
+    var body: String? = null,
+    var state: String? = null,
+    @Embedded(prefix = "userPullRequest") var user: GitHubUser? = null
 )

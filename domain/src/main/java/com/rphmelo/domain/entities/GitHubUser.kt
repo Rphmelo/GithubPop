@@ -1,7 +1,7 @@
 package com.rphmelo.domain.entities
 
 data class GitHubUser(
-    val id: Int,
-    val avatarUrl: String,
-    val login: String
+    var id: Long? = null,
+    var avatarUrl: String? = null,
+    var login: String? = null
 )

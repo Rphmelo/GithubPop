@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubPop</string>
+    <string name="repo_screen_title">GitHub Pop</string>
 </resources>

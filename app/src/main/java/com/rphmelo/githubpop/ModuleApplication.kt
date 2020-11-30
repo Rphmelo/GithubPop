@@ -3,6 +3,7 @@ package com.rphmelo.githubpop
 import android.app.Application
 import com.rphmelo.data.di.dataModules
 import com.rphmelo.domain.di.domainModule
+import com.rphmelo.githubpop.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,7 +15,7 @@ class ModuleApplication: Application() {
         startKoin {
             androidContext(this@ModuleApplication)
 
-            modules(domainModule + dataModules)
+            modules(domainModule + dataModules + presentationModule)
         }
     }
 }
