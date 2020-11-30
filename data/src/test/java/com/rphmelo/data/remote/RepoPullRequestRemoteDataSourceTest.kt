@@ -43,13 +43,14 @@ class RepoPullRequestRemoteDataSourceTest {
         val repoPullRequestFake = RepoPullRequestPayload(1, "Java Repo", "A Java repo.", "open", gitHubUser)
         val repoPullRequestListFake: List<RepoPullRequestPayload> = arrayListOf(repoPullRequestFake)
 
-        val fullName = "Rphmelo"
-        whenever(githubApi.getRepoPullRequests(fullName)).thenReturn(Observable.just(repoPullRequestListFake))
+        val login = "Rphmelo"
+        val name = "Rphmelo"
+        whenever(githubApi.getRepoPullRequests(login, name)).thenReturn(Observable.just(repoPullRequestListFake))
 
-        dataSource.getRepoPullRequests(fullName)
+        dataSource.getRepoPullRequests(login, name)
 
         inOrder(githubApi) {
-            verify(githubApi).getRepoPullRequests(fullName)
+            verify(githubApi).getRepoPullRequests(login, name)
         }
     }
 }

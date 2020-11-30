@@ -16,14 +16,13 @@
         tools:src="@tools:sample/backgrounds/scenic"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        style="@style/SubHeading"
+        style="@style/CaptionSecondary"
         android:id="@+id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_s"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="@color/textPrimary"
         tools:text="20"
         app:layout_constraintStart_toEndOf="@+id/ivImage"
         app:layout_constraintTop_toTopOf="@+id/ivImage"

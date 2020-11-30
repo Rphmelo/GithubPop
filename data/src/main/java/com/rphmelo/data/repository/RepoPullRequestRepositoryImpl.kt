@@ -12,24 +12,25 @@ class RepoPullRequestRepositoryImpl(
 ) : RepoPullRequestRepository {
 
     override fun getRepoPullRequests(
-        fullName: String,
+        login: String,
+        name: String,
         forceUpdate: Boolean
     ): Observable<List<RepoPullRequest>> {
         return if (forceUpdate) {
-            getReposPullRequestRemote(fullName, forceUpdate)
+            getReposPullRequestRemote(login, name, forceUpdate)
         } else {
             localDataSource.getRepoPullRequests()
                 .flatMap { repoPullRequestList ->
                     when {
-                        repoPullRequestList.isEmpty() -> getReposPullRequestRemote(fullName, false)
+                        repoPullRequestList.isEmpty() -> getReposPullRequestRemote(login, name, false)
                         else -> Observable.just(repoPullRequestList)
                     }
                 }
         }
     }
 
-    private fun getReposPullRequestRemote(fullName: String, isUpdate: Boolean): Observable<List<RepoPullRequest>> {
-        return remoteDataSource.getRepoPullRequests(fullName)
+    private fun getReposPullRequestRemote(login: String, name: String, isUpdate: Boolean): Observable<List<RepoPullRequest>> {
+        return remoteDataSource.getRepoPullRequests(login, name)
             .flatMap { repoPullRequestList ->
                 if (isUpdate) {
                     localDataSource.updateAll(repoPullRequestList)

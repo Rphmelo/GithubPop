@@ -20,7 +20,7 @@
         <item name="android:textSize">@dimen/font_twenty_six</item>
     </style>
 
-    <style name="H3" parent="FontStyleBlack">
+    <style name="H3" parent="FontStyleBold">
         <item name="android:textSize">@dimen/font_twenty</item>
     </style>
 

@@ -1,7 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bgCanvas">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/SubHeading"
+        android:id="@+id/tvRepoStates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_s"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/textPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="16 opened / 34 closed"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRepoPullRequestList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/space_s"
+        android:layout_marginStart="@dimen/space_sub_m"
+        android:layout_marginEnd="@dimen/space_sub_m"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoStates"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_repo_pull_request_list"
+        />
+
+    <com.rphmelo.design.components.EmptyState
+        android:id="@+id/esRepoPullRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/space_twenty"
+        android:layout_marginEnd="@dimen/space_twenty"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/repoPullRequestScreenLoading"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:indeterminate="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

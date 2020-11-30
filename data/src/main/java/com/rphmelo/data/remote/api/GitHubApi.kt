@@ -16,8 +16,9 @@ interface GitHubApi {
         @Query("sort") sort: String = "stars"
     ): Observable<ResponsePayload>
 
-    @GET("/repos/{fullName}/pulls")
+    @GET("/repos/{login}/{name}/pulls")
     fun getRepoPullRequests(
-        @Path("fullName") fullName: String
+        @Path("login") login: String,
+        @Path("name") name: String
     ): Observable<List<RepoPullRequestPayload>>
 }

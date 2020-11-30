@@ -9,7 +9,7 @@ class RepoPullRequestRemoteDataSourceImpl(
     private val api: GitHubApi,
     private val mapper: RepoPullRequestMapper
 ) : RepoPullRequestRemoteDataSource {
-    override fun getRepoPullRequests(fullName: String): Observable<List<RepoPullRequest>> {
-        return api.getRepoPullRequests(fullName).map { mapper.map(it) }
+    override fun getRepoPullRequests(login: String, name: String): Observable<List<RepoPullRequest>> {
+        return api.getRepoPullRequests(login, name).map { mapper.map(it) }
     }
 }

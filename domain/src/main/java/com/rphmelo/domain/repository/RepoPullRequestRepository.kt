@@ -4,5 +4,5 @@ import com.rphmelo.domain.entities.RepoPullRequest
 import io.reactivex.Observable
 
 interface RepoPullRequestRepository {
-    fun getRepoPullRequests(fullName: String, forceUpdate: Boolean): Observable<List<RepoPullRequest>>
+    fun getRepoPullRequests(login: String, name: String, forceUpdate: Boolean): Observable<List<RepoPullRequest>>
 }

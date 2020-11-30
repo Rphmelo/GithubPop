@@ -25,15 +25,15 @@ class RepoFragment : Fragment() {
     private val repoListAdapter by lazy { RepoListAdapter() }
 
     private var stateView: Int by StateViewDelegate(
-        STATE_VIEW_LOADING to ::showLoading,
-        STATE_VIEW_SUCCESS to ::showList,
-        STATE_VIEW_ERROR to ::showError
+        LOADING to ::showLoading,
+        SUCCESS to ::showList,
+        ERROR to ::showError
     )
 
     companion object {
-        const val STATE_VIEW_LOADING = 1
-        const val STATE_VIEW_SUCCESS = 2
-        const val STATE_VIEW_ERROR = 3
+        const val LOADING = 1
+        const val SUCCESS = 2
+        const val ERROR = 3
 
         fun newInstance() = RepoFragment()
     }
@@ -48,7 +48,7 @@ class RepoFragment : Fragment() {
     }
 
     private fun configureRepoList(repoList: List<Repo>) {
-        stateView = STATE_VIEW_SUCCESS
+        stateView = SUCCESS
         with(rvRepoList) {
             val dividerItemDecoration = DividerItemDecoration(
                 context,
@@ -69,23 +69,26 @@ class RepoFragment : Fragment() {
     }
 
     private fun setError(throwable: Throwable) {
-        stateView = STATE_VIEW_ERROR
+        stateView = ERROR
         Toast.makeText(context, throwable.message, Toast.LENGTH_LONG).show()
     }
 
     private fun setLoading() {
-        stateView = STATE_VIEW_LOADING
+        stateView = LOADING
     }
 
     private fun showLoading() {
+        rvRepoList.gone()
         repoScreenLoading.visible()
     }
 
     private fun showList() {
+        rvRepoList.visible()
         repoScreenLoading.gone()
     }
 
     private fun showError() {
+        rvRepoList.gone()
         repoScreenLoading.gone()
     }
 

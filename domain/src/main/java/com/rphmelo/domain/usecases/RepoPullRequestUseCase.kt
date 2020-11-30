@@ -9,8 +9,8 @@ class RepoPullRequestUseCase(
     private val repository: RepoPullRequestRepository,
     private val scheduler: Scheduler
 ) {
-    fun getPullRequests(fullName: String, forceUpdate: Boolean): Observable<List<RepoPullRequest>> {
-        return repository.getRepoPullRequests(fullName, forceUpdate)
+    fun getPullRequests(login: String, name: String, forceUpdate: Boolean): Observable<List<RepoPullRequest>> {
+        return repository.getRepoPullRequests(login, name, forceUpdate)
             .subscribeOn(scheduler)
     }
 }
