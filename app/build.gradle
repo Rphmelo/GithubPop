@@ -43,6 +43,7 @@ dependencies {
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.mockitoInline
     testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.coreTesting
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espresso
     androidTestImplementation testDependencies.androidxJunitVersion
