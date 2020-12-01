@@ -9,18 +9,18 @@ import kotlinx.android.synthetic.main.item_repo_list.view.*
 
 class RepoListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(item: Repo, onItemClick: OnItemClick?) {
+    fun bind(item: Repo?, onItemClick: OnItemClick?) {
         with(itemView) {
             with(uivRepoItem) {
-                item.owner?.apply {
+                item?.owner?.apply {
                     avatarUrl?.let { setAvatarUser(it) }
                     login?.let { setUserName(it) }
                 }
 
-                item.fullName?.let { setUserFullName(it) }
+                item?.fullName?.let { setUserFullName(it) }
             }
             with(riRepoItem) {
-                item.apply {
+                item?.apply {
                     name?.let { setTitle(it) }
                     description?.let { setDescription(it) }
                 }

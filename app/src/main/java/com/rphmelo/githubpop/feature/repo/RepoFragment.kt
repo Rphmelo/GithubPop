@@ -16,6 +16,7 @@ import com.rphmelo.githubpop.feature.repo.viewModel.RepoViewModel
 import com.rphmelo.githubpop.feature.repo.viewModel.ViewState
 import com.rphmelo.githubpop.feature.utils.StateViewDelegate
 import com.rphmelo.githubpop.feature.utils.fragmentTransaction
+import com.rphmelo.githubpop.utils.EndlessScrollListener
 import kotlinx.android.synthetic.main.fragment_repo.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,11 +45,21 @@ class RepoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configureRecyclerView()
         setupViewModel()
     }
 
-    private fun configureRepoList(repoList: List<Repo>) {
+    private fun loadAdapterList(repoList: List<Repo>) {
         stateView = SUCCESS
+        with(rvRepoList) {
+            repoListAdapter.hideLoadingItem()
+            adapter = repoListAdapter.apply {
+                addAll(repoList.toMutableList(), ::onRepoItemClick)
+            }
+        }
+    }
+
+    private fun configureRecyclerView() {
         with(rvRepoList) {
             val dividerItemDecoration = DividerItemDecoration(
                 context,
@@ -56,13 +67,16 @@ class RepoFragment : Fragment() {
             )
             addItemDecoration(dividerItemDecoration)
             setHasFixedSize(true)
-            adapter = repoListAdapter.apply {
-                addAll(repoList, ::onRepoItemClick)
-            }
+            adapter = repoListAdapter
+            addOnScrollListener(object : EndlessScrollListener(repoListAdapter) {
+                override fun onLoadMore() {
+                    getRepos()
+                }
+            })
         }
     }
 
-    private fun onRepoItemClick(item: Repo) {
+    private fun onRepoItemClick(item: Repo?) {
         fragmentTransaction(R.id.flContainer) {
             add(RepoPullRequestFragment.newInstance(item))
         }
@@ -74,7 +88,9 @@ class RepoFragment : Fragment() {
     }
 
     private fun setLoading() {
-        stateView = LOADING
+        if(repoListAdapter.getPageNumber() == 1) {
+            stateView = LOADING
+        }
     }
 
     private fun showLoading() {
@@ -92,13 +108,17 @@ class RepoFragment : Fragment() {
         repoScreenLoading.gone()
     }
 
+    private fun getRepos() {
+        viewModel.getRepos("language:java", repoListAdapter.getPageNumber(), true)
+    }
+
     private fun setupViewModel() {
-        viewModel.getRepos("language:java", 1, true)
+        getRepos()
 
         viewModel.state.observe(this, Observer { viewState ->
             when(viewState) {
                 is ViewState.Success -> {
-                    configureRepoList(viewState.data)
+                    loadAdapterList(viewState.data)
                 }
                 is ViewState.Loading -> {
                     setLoading()

@@ -41,7 +41,7 @@ class RepoPullRequestFragment : Fragment() {
 
         private const val REPO_ITEM_KEY = "REPO_ITEM_KEY"
 
-        fun newInstance(repoItem: Repo) = RepoPullRequestFragment().apply {
+        fun newInstance(repoItem: Repo?) = RepoPullRequestFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(REPO_ITEM_KEY, repoItem)
             }
