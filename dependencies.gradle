@@ -28,6 +28,9 @@ ext {
     //Retrofit
     retrofitVersion = '2.6.0'
 
+    //Okhttp
+    okhttp3Version = '3.12.1'
+
     //Gson
     gsonVersion = '2.8.5'
 
@@ -70,6 +73,7 @@ ext {
             koin                  : "org.koin:koin-android:$koinVersion",
             koinViewModel         : "org.koin:koin-androidx-viewmodel:$koinVersion",
 
+            okhttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp3Version",
             retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxAdapter     : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             retrofitGsonConverter : "com.squareup.retrofit2:converter-gson:$retrofitVersion",

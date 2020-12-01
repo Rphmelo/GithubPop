@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GithubPop</string>
     <string name="repo_screen_title">GitHub Pop</string>
+    <string name="ok_got_it">OK, entendi</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="message_dialog_title">Atenção, algo deu errado</string>
+    <string name="message_dialog_message">Já estamos trabalhando para corrigir isso. Mas você pode tentar novamente :)</string>
 </resources>

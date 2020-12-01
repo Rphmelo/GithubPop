@@ -14,6 +14,7 @@ import com.rphmelo.design.extensions.visible
 import com.rphmelo.design.utils.SpacesItemDecoration
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.githubpop.R
+import com.rphmelo.githubpop.extension.showMessageDialog
 import com.rphmelo.githubpop.feature.repoPullRequest.RepoPullRequestFragment
 import com.rphmelo.githubpop.feature.viewModel.RepoViewModel
 import com.rphmelo.githubpop.feature.viewModel.ViewState
@@ -84,9 +85,8 @@ class RepoFragment : Fragment() {
         }
     }
 
-    private fun setError(throwable: Throwable) {
+    private fun setError() {
         stateView = ERROR
-        Toast.makeText(context, throwable.message, Toast.LENGTH_LONG).show()
     }
 
     private fun setLoading() {
@@ -106,8 +106,13 @@ class RepoFragment : Fragment() {
     }
 
     private fun showError() {
-        rvRepoList.gone()
         repoScreenLoading.gone()
+        context?.showMessageDialog(
+            getString(R.string.message_dialog_title),
+            getString(R.string.message_dialog_message)
+        ) {
+            getRepos()
+        }
     }
 
     private fun getRepos() {
@@ -126,7 +131,7 @@ class RepoFragment : Fragment() {
                     setLoading()
                 }
                 is ViewState.Failed -> {
-                    setError(viewState.throwable)
+                    setError()
                 }
             }
         })

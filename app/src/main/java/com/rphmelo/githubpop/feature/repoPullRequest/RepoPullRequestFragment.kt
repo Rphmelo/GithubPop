@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.rphmelo.design.extensions.gone
 import com.rphmelo.design.extensions.visible
 import com.rphmelo.design.utils.SpacesItemDecoration
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.domain.entities.RepoPullRequest
 import com.rphmelo.githubpop.R
+import com.rphmelo.githubpop.extension.showMessageDialog
 import com.rphmelo.githubpop.feature.viewModel.RepoPullRequestViewModel
 import com.rphmelo.githubpop.feature.viewModel.ViewState
 import com.rphmelo.githubpop.feature.utils.StateViewDelegate
@@ -76,14 +75,11 @@ class RepoPullRequestFragment : Fragment() {
     }
 
     private fun setError(throwable: Throwable) {
-        stateView =
-            ERROR
-        Toast.makeText(context, throwable.message, Toast.LENGTH_LONG).show()
+        stateView = ERROR
     }
 
     private fun setLoading() {
-        stateView =
-            LOADING
+        stateView = LOADING
     }
 
     private fun showLoading() {
@@ -104,6 +100,12 @@ class RepoPullRequestFragment : Fragment() {
         rvRepoPullRequestList.gone()
         repoPullRequestScreenLoading.gone()
         esRepoPullRequest.gone()
+        context?.showMessageDialog(
+            getString(R.string.message_dialog_title),
+            getString(R.string.message_dialog_message)
+        ) {
+            getPullRequests()
+        }
     }
 
     private fun showEmptyState() {
@@ -113,8 +115,12 @@ class RepoPullRequestFragment : Fragment() {
         repoPullRequestScreenLoading.gone()
     }
 
-    private fun setupViewModel() {
+    private fun getPullRequests() {
         viewModel.getPullRequests(repoItem?.owner?.login ?: "Rphmelo", repoItem?.name  ?: "GithubPop", true)
+    }
+
+    private fun setupViewModel() {
+        getPullRequests()
 
         viewModel.state.observe(this, Observer { viewState ->
             when(viewState) {

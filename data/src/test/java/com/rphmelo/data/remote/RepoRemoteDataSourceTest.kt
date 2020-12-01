@@ -11,7 +11,6 @@ import com.rphmelo.data.remote.source.RepoRemoteDataSource
 import com.rphmelo.data.remote.source.RepoRemoteDataSourceImpl
 import com.rphmelo.data.rules.RxSchedulersOverrideRule
 import io.reactivex.Observable
-import okhttp3.Response
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

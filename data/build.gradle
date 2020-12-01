@@ -58,6 +58,7 @@ dependencies {
     implementation dependencies.rxJava
     implementation dependencies.rxAndroid
 
+    implementation dependencies.okhttp3LoggingInterceptor
     implementation dependencies.retrofit
     implementation dependencies.retrofitRxAdapter
     implementation dependencies.retrofitGsonConverter
