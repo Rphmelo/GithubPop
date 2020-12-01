@@ -5,16 +5,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rphmelo.domain.entities.GitHubUser
 import com.rphmelo.domain.entities.RepoPullRequest
-import com.rphmelo.domain.repository.RepoPullRequestRepository
 import com.rphmelo.domain.usecases.RepoPullRequestUseCase
 import com.rphmelo.githubpop.feature.viewModel.RepoPullRequestViewModel
 import com.rphmelo.githubpop.feature.viewModel.ViewState
+import com.rphmelo.githubpop.rules.RxSchedulersOverrideRule
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import junit.framework.Assert
+import junit.framework.Assert.assertNull
+import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,10 +29,10 @@ class RepoPullRequestViewModelTest {
     @get:Rule
     var instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
-    lateinit var repoPullRequestRepository: RepoPullRequestRepository
+    @get:Rule
+    var rxSchedulerRule: RxSchedulersOverrideRule = RxSchedulersOverrideRule()
 
-    private val scheduler = Schedulers.io()
+    @Mock
     lateinit var repoPullRequestUseCase: RepoPullRequestUseCase
 
     private lateinit var viewModel: RepoPullRequestViewModel
@@ -46,9 +47,8 @@ class RepoPullRequestViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        repoPullRequestUseCase = RepoPullRequestUseCase(repoPullRequestRepository, scheduler)
         lifecycle = LifecycleRegistry(lifecycleOwner)
-        viewModel = RepoPullRequestViewModel(repoPullRequestUseCase, scheduler)
+        viewModel = RepoPullRequestViewModel(repoPullRequestUseCase)
         viewModel.state.observeForever(observer)
     }
 
@@ -56,9 +56,9 @@ class RepoPullRequestViewModelTest {
     fun `Given ViewModel is instantiated When view model is initialized Then state should be Loading`() {
         val login = "teste"
         val name = "teste"
-        whenever(repoPullRequestRepository.getRepoPullRequests(login, name, false)).thenReturn(null)
-        assert(viewModel.state.value == ViewState.Loading)
-        Assert.assertTrue(viewModel.state.hasObservers())
+        whenever(repoPullRequestUseCase.getPullRequests(login, name, false)).thenReturn(null)
+        assertNull(viewModel.state.value)
+        assertTrue(viewModel.state.hasObservers())
     }
 
     @Test
@@ -66,10 +66,10 @@ class RepoPullRequestViewModelTest {
         val login = "teste"
         val name = "teste"
         val throwable = Throwable()
-        whenever(repoPullRequestRepository.getRepoPullRequests(login, name, false)).thenReturn(Observable.error(throwable))
-        viewModel.getPullRequests(login, name)
-        Assert.assertEquals(viewModel.state.value, ViewState.Loading)
-        Assert.assertTrue(viewModel.state.hasObservers())
+        whenever(repoPullRequestUseCase.getPullRequests(login, name, false)).thenReturn(Observable.error(throwable))
+        viewModel.getPullRequests(login, name, false)
+        verify(observer).onChanged(ViewState.Loading)
+        verify(observer).onChanged(ViewState.Failed(throwable))
     }
 
     @Test
@@ -79,9 +79,9 @@ class RepoPullRequestViewModelTest {
         val gitHubUser = GitHubUser(11, "https://www.avatar.com", "Rphmelo")
         val repoPullRequestFake = RepoPullRequest(1, "Java Repo", "A Java repo.", "open", gitHubUser)
         val repoPullRequestListFake: List<RepoPullRequest> = arrayListOf(repoPullRequestFake)
-        whenever(repoPullRequestRepository.getRepoPullRequests(login, name, false)).thenReturn(Observable.just(repoPullRequestListFake))
+        whenever(repoPullRequestUseCase.getPullRequests(login, name, false)).thenReturn(Observable.just(repoPullRequestListFake))
         viewModel.getPullRequests(login, name)
-        Assert.assertEquals(ViewState.Loading, viewModel.state.value)
-        Assert.assertTrue(viewModel.state.hasObservers())
+        verify(observer).onChanged(ViewState.Loading)
+        verify(observer).onChanged(ViewState.Success(repoPullRequestListFake))
     }
 }

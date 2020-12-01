@@ -3,21 +3,18 @@ package com.rphmelo.githubpop.feature.viewModel
 import androidx.lifecycle.MutableLiveData
 import com.rphmelo.domain.entities.RepoPullRequest
 import com.rphmelo.domain.usecases.RepoPullRequestUseCase
-import io.reactivex.Scheduler
+import com.rphmelo.githubpop.feature.utils.RxComposer
 import io.reactivex.rxkotlin.plusAssign
 
 class RepoPullRequestViewModel(
-    private val useCase: RepoPullRequestUseCase,
-    private val uiScheduler: Scheduler
+    private val useCase: RepoPullRequestUseCase
 ): BaseViewModel() {
 
-    val state = MutableLiveData<ViewState<List<RepoPullRequest>>>().apply {
-        value = ViewState.Loading
-    }
+    val state = MutableLiveData<ViewState<List<RepoPullRequest>>>()
 
     fun getPullRequests(login: String, name: String, forceUpdate: Boolean = false) {
         disposables += useCase.getPullRequests(login, name, forceUpdate)
-            .observeOn(uiScheduler)
+            .compose(RxComposer.ioThread())
             .doOnSubscribe { state.postValue(ViewState.Loading) }
             .subscribe(
                 {

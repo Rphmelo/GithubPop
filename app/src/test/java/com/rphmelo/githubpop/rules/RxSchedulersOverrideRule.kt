@@ -1,4 +1,4 @@
-package com.rphmelo.data.rules
+package com.rphmelo.githubpop.rules
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins

@@ -5,16 +5,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rphmelo.domain.entities.GitHubUser
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.domain.usecases.RepoUseCase
 import com.rphmelo.githubpop.feature.viewModel.RepoViewModel
 import com.rphmelo.githubpop.feature.viewModel.ViewState
+import com.rphmelo.githubpop.rules.RxSchedulersOverrideRule
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertTrue
+import junit.framework.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,10 +28,11 @@ class RepoViewModelTest {
     @get:Rule
     var instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    var rxSchedulerRule: RxSchedulersOverrideRule = RxSchedulersOverrideRule()
+
     @Mock
     lateinit var repoUseCase: RepoUseCase
-
-    private val scheduler = Schedulers.io()
 
     private lateinit var viewModel: RepoViewModel
     @Mock
@@ -46,7 +47,7 @@ class RepoViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         lifecycle = LifecycleRegistry(lifecycleOwner)
-        viewModel = RepoViewModel(repoUseCase, scheduler)
+        viewModel = RepoViewModel(repoUseCase)
         viewModel.state.observeForever(observer)
     }
 
@@ -55,7 +56,7 @@ class RepoViewModelTest {
         val q = "teste"
         val pageNumber = 2
         whenever(repoUseCase.getRepos(q, pageNumber, true)).thenReturn(null)
-        assert(viewModel.state.value == ViewState.Loading)
+        assertNull(viewModel.state.value)
         assertTrue(viewModel.state.hasObservers())
     }
 
@@ -65,9 +66,9 @@ class RepoViewModelTest {
         val pageNumber = 2
         val throwable = Throwable()
         whenever(repoUseCase.getRepos(q, pageNumber, false)).thenReturn(Observable.error(throwable))
-        viewModel.getRepos(q, pageNumber)
-        assert(viewModel.state.value == ViewState.Failed(throwable))
-        assertTrue(viewModel.state.hasObservers())
+        viewModel.getRepos(q, pageNumber, false)
+        verify(observer).onChanged(ViewState.Loading)
+        verify(observer).onChanged(ViewState.Failed(throwable))
     }
 
     @Test
@@ -77,8 +78,8 @@ class RepoViewModelTest {
         val repo = Repo(1, "", "", GitHubUser(), "", 1,1)
         val repoList: List<Repo> = arrayListOf(repo)
         whenever(repoUseCase.getRepos(q, pageNumber, false)).thenReturn(Observable.just(repoList))
-        viewModel.getRepos(q, pageNumber)
-        assertEquals(ViewState.Loading, viewModel.state.value)
-        assertTrue(viewModel.state.hasObservers())
+        viewModel.getRepos(q, pageNumber, false)
+        verify(observer).onChanged(ViewState.Loading)
+        verify(observer).onChanged(ViewState.Success(repoList))
     }
 }

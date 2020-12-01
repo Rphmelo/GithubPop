@@ -9,6 +9,6 @@ import org.koin.dsl.module
 
 val presentationModule = module {
     viewModel { BaseViewModel() }
-    viewModel { RepoViewModel(useCase = get(), uiScheduler = AndroidSchedulers.mainThread()) }
-    viewModel { RepoPullRequestViewModel(useCase = get(), uiScheduler = AndroidSchedulers.mainThread()) }
+    viewModel { RepoViewModel(useCase = get()) }
+    viewModel { RepoPullRequestViewModel(useCase = get()) }
 }
