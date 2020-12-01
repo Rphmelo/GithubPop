@@ -26,18 +26,16 @@ class RepoListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 }
             }
 
-//            with(fiForkCount) {
-//                item.apply {
-//                    with(fiForkCount) {
-//                        forksCount?.let { setCount(it.toString()) }
-//                        setImageView(R.drawable.ic_arrow_back)
-//                    }
-//                    with(fiStarsCount) {
-//                        forksCount?.let { setCount(it.toString()) }
-//                        setImageView(R.drawable.ic_arrow_back)
-//                    }
-//                }
-//            }
+            item?.apply {
+                with(fiForkCount) {
+                    forksCount?.let { setCount(it.toString()) }
+                    setImageView(R.drawable.ic_fork)
+                }
+                with(fiStarsCount) {
+                    starsCount?.let { setCount(it.toString()) }
+                    setImageView(R.drawable.ic_star)
+                }
+            }
 
             setOnSingleClickListener {
                 onItemClick?.invoke(item)

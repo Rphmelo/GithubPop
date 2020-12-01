@@ -16,6 +16,6 @@
     <color name="textSecondary">#99000000</color>
     <color name="textDisable">#61000000</color>
     <color name="textSuccess">#2e7d32</color>
-    <color name="textWarning">#fd996910</color>
-    <color name="warning">#ffb300</color>
+    <color name="textWarning">#FFD433</color>
+    <color name="bgWarning">#FFD033</color>
 </resources>
