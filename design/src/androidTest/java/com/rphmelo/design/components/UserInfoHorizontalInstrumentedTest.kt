@@ -24,7 +24,7 @@ class UserInfoHorizontalInstrumentedTest {
             override fun run(view: UserInfoHorizontal?) {
                 view?.setUserFullName(fullName)
                 view?.setUserName(userName)
-                view?.setAvatarUser("https://avatars1.githubusercontent.com/u/1342004?v=4")
+                view?.setAvatarUser("https://avatars1.githubusercontent.com/u/1342004?v=4","")
             }
         })
 

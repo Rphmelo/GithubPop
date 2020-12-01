@@ -18,15 +18,15 @@ class UserInfoVertical @JvmOverloads constructor(
         inflate(R.layout.view_user_info_vertical)
     }
 
-    fun setUserName(userName: String?, contentDescriptionValue: String) {
+    fun setUserName(userName: String?, contentDescriptionValue: String = "") {
         setTextViewText(tvUserName, userName, contentDescriptionValue)
     }
 
-    fun setUserFullName(userFullName: String?, contentDescriptionValue: String) {
+    fun setUserFullName(userFullName: String?, contentDescriptionValue: String = "") {
         setTextViewText(tvUserFullName, userFullName, contentDescriptionValue)
     }
 
-    fun setAvatarUser(imageUrl: String, contentDescriptionValue: String) {
+    fun setAvatarUser(imageUrl: String, contentDescriptionValue: String = "") {
         with(ivAvatarUser) {
             contentDescription = contentDescriptionValue
             visible()
