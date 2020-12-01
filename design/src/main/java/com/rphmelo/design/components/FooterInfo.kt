@@ -21,9 +21,10 @@ class FooterInfo @JvmOverloads constructor(
         tvCount.text = count
     }
 
-    fun setImageView(@DrawableRes imageRes: Int?) {
+    fun setImageView(@DrawableRes imageRes: Int?, contentDescriptionValue: String) {
         imageRes?.let {
             with(ivImage) {
+                contentDescription = contentDescriptionValue
                 visible()
                 setImageResource(it)
             }

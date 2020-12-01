@@ -149,6 +149,7 @@ class RepoPullRequestFragment : Fragment() {
     private fun setToolbar() {
         activity?.toolbar?.apply {
             title = repoItem?.name ?: "Repository name"
+            navigationContentDescription = getString(R.string.back_button_acessibility)
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener { activity?.onBackPressed() }
         }

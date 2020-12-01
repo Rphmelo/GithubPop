@@ -27,6 +27,7 @@
         android:padding="8dp"
         android:visibility="gone"
         android:indeterminate="true"
+        android:contentDescription="@string/progressBarAcessibility"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

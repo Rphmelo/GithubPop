@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rphmelo.design.extensions.setOnSingleClickListener
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.githubpop.R
+import com.rphmelo.githubpop.extension.orZero
 import kotlinx.android.synthetic.main.item_repo_list.view.*
 
 class RepoListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -13,11 +14,11 @@ class RepoListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         with(itemView) {
             with(uivRepoItem) {
                 item?.owner?.apply {
-                    avatarUrl?.let { setAvatarUser(it) }
-                    login?.let { setUserName(it) }
+                    avatarUrl?.let { setAvatarUser(it, context.getString(R.string.userImageAcessibility)) }
+                    login?.let { setUserName(it, context.getString(R.string.userNameAcessibility, it)) }
                 }
 
-                item?.fullName?.let { setUserFullName(it) }
+                item?.fullName?.let { setUserFullName(it, context.getString(R.string.userNameAcessibility, it)) }
             }
             with(riRepoItem) {
                 item?.apply {
@@ -29,12 +30,13 @@ class RepoListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             item?.apply {
                 with(fiForkCount) {
                     forksCount?.let { setCount(it.toString()) }
-                    setImageView(R.drawable.ic_fork)
+                    setImageView(R.drawable.ic_fork, context.getString(R.string.forkImageAcessibility))
                 }
                 with(fiStarsCount) {
                     starsCount?.let { setCount(it.toString()) }
-                    setImageView(R.drawable.ic_star)
+                    setImageView(R.drawable.ic_star, context.getString(R.string.starImageAcessibility))
                 }
+                llFooterInfo.contentDescription = context.getString(R.string.footerInfoAcessibility, forksCount?.toString(), starsCount?.toString())
             }
 
             setOnSingleClickListener {

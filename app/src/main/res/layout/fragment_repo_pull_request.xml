@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:focusable="true"
     android:background="@color/bgCanvas">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -18,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="16 opened / 34 closed"
+        tools:text="16 opened / 34 closed"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,6 +58,7 @@
         android:padding="8dp"
         android:visibility="gone"
         android:indeterminate="true"
+        android:contentDescription="@string/progressBarAcessibility"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

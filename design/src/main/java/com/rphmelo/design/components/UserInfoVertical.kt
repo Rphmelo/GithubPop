@@ -18,24 +18,26 @@ class UserInfoVertical @JvmOverloads constructor(
         inflate(R.layout.view_user_info_vertical)
     }
 
-    fun setUserName(userName: String?) {
-        setTextViewText(tvUserName, userName)
+    fun setUserName(userName: String?, contentDescriptionValue: String) {
+        setTextViewText(tvUserName, userName, contentDescriptionValue)
     }
 
-    fun setUserFullName(userFullName: String?) {
-        setTextViewText(tvUserFullName, userFullName)
+    fun setUserFullName(userFullName: String?, contentDescriptionValue: String) {
+        setTextViewText(tvUserFullName, userFullName, contentDescriptionValue)
     }
 
-    fun setAvatarUser(imageUrl: String) {
+    fun setAvatarUser(imageUrl: String, contentDescriptionValue: String) {
         with(ivAvatarUser) {
+            contentDescription = contentDescriptionValue
             visible()
             loadCircularUrl(imageUrl)
         }
     }
 
-    private fun setTextViewText(view: AppCompatTextView, text: String?) {
+    private fun setTextViewText(view: AppCompatTextView, text: String?, contentDescriptionValue: String) {
         text?.let {
             if(it.isNotEmpty()) {
+                contentDescription = contentDescriptionValue
                 view.text = it
             }
         }

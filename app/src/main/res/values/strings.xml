@@ -8,4 +8,12 @@
     <string name="states_count">%s / %s </string>
     <string name="states_count_open">%s abertos </string>
     <string name="states_count_closed">%s fechados</string>
+    <string name="forkImageAcessibility">ícone de forks</string>
+    <string name="starImageAcessibility">Ícone de estrela</string>
+    <string name="footerInfoAcessibility">%s forks e %s estrelas</string>
+    <string name="userImageAcessibility">Imagem de perfil do dono do repositório</string>
+    <string name="userPullImageAcessibility">Imagem de perfil do criador do pull request</string>
+    <string name="progressBarAcessibility">Barra de Progresso</string>
+    <string name="userNameAcessibility">Usuário %s</string>
+    <string name="back_button_acessibility">Botão voltar</string>
 </resources>

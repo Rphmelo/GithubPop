@@ -9,6 +9,7 @@
         android:id="@+id/ivAvatarUser"
         android:layout_width="@dimen/space_forty_four"
         android:layout_height="@dimen/space_forty_four"
+        android:contentDescription="@string/user_profile_image"
         app:layout_constraintStart_toStartOf="@+id/tvUserName"
         app:layout_constraintEnd_toEndOf="@+id/tvUserName"
         app:layout_constraintTop_toTopOf="parent"

@@ -2,4 +2,5 @@
 <resources>
     <string name="empty_state_title">Nenhum resultado encontrado :(</string>
     <string name="empty_state_body">Mas você pode tentar selecionar uma nova opção ;D</string>
+    <string name="user_profile_image">Imagem de perfil do usuário</string>
 </resources>

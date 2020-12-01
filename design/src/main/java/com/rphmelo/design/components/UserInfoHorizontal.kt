@@ -26,8 +26,9 @@ class UserInfoHorizontal @JvmOverloads constructor(
         setTextViewText(tvUserFullName, userFullName)
     }
 
-    fun setAvatarUser(imageUrl: String) {
+    fun setAvatarUser(imageUrl: String, contentDescriptionValue: String) {
         with(ivAvatarUser) {
+            contentDescription = contentDescriptionValue
             visible()
             loadCircularUrl(imageUrl)
         }
