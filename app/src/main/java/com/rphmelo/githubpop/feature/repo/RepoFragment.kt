@@ -1,6 +1,7 @@
 package com.rphmelo.githubpop.feature.repo
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class RepoFragment : Fragment() {
 
     private val viewModel: RepoViewModel by viewModel()
     private val repoListAdapter by lazy { RepoListAdapter() }
+    private var rvRepoListState: Parcelable? = null
 
     private var stateView: Int by StateViewDelegate(
         LOADING to ::showLoading,
@@ -52,6 +54,7 @@ class RepoFragment : Fragment() {
     private fun loadAdapterList(repoList: List<Repo>) {
         stateView = SUCCESS
         with(rvRepoList) {
+            layoutManager?.onRestoreInstanceState(rvRepoListState)
             repoListAdapter.hideLoadingItem()
             adapter = repoListAdapter.apply {
                 addAll(repoList.toMutableList(), ::onRepoItemClick)
@@ -70,6 +73,7 @@ class RepoFragment : Fragment() {
             adapter = repoListAdapter
             addOnScrollListener(object : EndlessScrollListener(repoListAdapter) {
                 override fun onLoadMore() {
+                    rvRepoListState = rvRepoList.layoutManager?.onSaveInstanceState()
                     getRepos()
                 }
             })
