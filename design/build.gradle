@@ -26,6 +26,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            manifest {
+                srcFile 'src/androidTest/AndroidManifest.xml'
+            }
+        }
+    }
 
 }
 
@@ -40,12 +47,16 @@ dependencies {
     implementation dependencies.material
 
     implementation dependencies.glide
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     kapt dependencies.glideCompiler
 
     implementation dependencies.ktx
 
     implementation dependencies.constraintlayout
     testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.rules
+    androidTestImplementation testDependencies.androidxJunitVersion
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espresso
 }

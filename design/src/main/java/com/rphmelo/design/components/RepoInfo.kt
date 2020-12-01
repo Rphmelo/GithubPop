@@ -25,6 +25,10 @@ class RepoInfo @JvmOverloads constructor(
     }
 
     private fun setTextViewText(view: AppCompatTextView, text: String?) {
-        text?.let { if(it.isNotEmpty()) view.text = it }
+        text?.let {
+            if(it.isNotEmpty()) {
+                view.text = it
+            }
+        }
     }
 }

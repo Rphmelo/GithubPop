@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.rphmelo.design.components.UserInfoHorizontal android:id="@+id/uihRepoItem"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" />

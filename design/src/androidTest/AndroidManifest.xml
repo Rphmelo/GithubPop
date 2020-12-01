@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rphmelo.design">
+
+    <application>
+        <activity
+            android:name=".rules.EmptyActivity"
+            android:theme="@style/AppTheme"
+            />
+    </application>
+
+</manifest>

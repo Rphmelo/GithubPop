@@ -50,7 +50,6 @@ dependencies {
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.mockitoInline
     testImplementation testDependencies.mockitoKotlin
-    testImplementation testDependencies.androidxJunitVersion
     testImplementation testDependencies.robolectric
     androidTestImplementation testDependencies.runner
 

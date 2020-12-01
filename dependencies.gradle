@@ -45,6 +45,7 @@ ext {
     androidxJunitVersion = '1.1.1'
     espressoVersion = '3.1.1'
     runnerVersion = '1.2.0'
+    rulesVersion = '1.1.1'
     coreTestingVersion = '2.1.0'
     mockitoCoreVersion = '2.9.0'
     mockitoInlineVersion = '2.13.0'
@@ -95,6 +96,7 @@ ext {
             mockitoKotlin         : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
             espresso              : "androidx.test.espresso:espresso-core:$espressoVersion",
             runner                : "androidx.test:runner:$runnerVersion",
+            rules                 : "androidx.test:rules:$rulesVersion",
             coreTesting           : "androidx.arch.core:core-testing:$coreTestingVersion",
             robolectric           : "org.robolectric:robolectric:$robolectricVersion",
     ]
