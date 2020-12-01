@@ -40,6 +40,9 @@ class RepoPullRequestViewModelTest {
     lateinit var observer: Observer<ViewState<List<RepoPullRequest>>>
 
     @Mock
+    lateinit var observerStates: Observer<Pair<Int, Int>>
+
+    @Mock
     lateinit var lifecycleOwner: LifecycleOwner
 
     lateinit var lifecycle: Lifecycle
@@ -50,6 +53,7 @@ class RepoPullRequestViewModelTest {
         lifecycle = LifecycleRegistry(lifecycleOwner)
         viewModel = RepoPullRequestViewModel(repoPullRequestUseCase)
         viewModel.state.observeForever(observer)
+        viewModel.pullStateCount.observeForever(observerStates)
     }
 
     @Test
@@ -82,6 +86,7 @@ class RepoPullRequestViewModelTest {
         whenever(repoPullRequestUseCase.getPullRequests(login, name, false)).thenReturn(Observable.just(repoPullRequestListFake))
         viewModel.getPullRequests(login, name)
         verify(observer).onChanged(ViewState.Loading)
+        verify(observerStates).onChanged(Pair(1, 0))
         verify(observer).onChanged(ViewState.Success(repoPullRequestListFake))
     }
 }
