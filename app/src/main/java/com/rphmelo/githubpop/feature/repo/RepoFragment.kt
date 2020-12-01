@@ -11,10 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.rphmelo.design.extensions.gone
 import com.rphmelo.design.extensions.visible
+import com.rphmelo.design.utils.SpacesItemDecoration
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.githubpop.R
-import com.rphmelo.githubpop.feature.repo.viewModel.RepoViewModel
-import com.rphmelo.githubpop.feature.repo.viewModel.ViewState
+import com.rphmelo.githubpop.feature.repoPullRequest.RepoPullRequestFragment
+import com.rphmelo.githubpop.feature.viewModel.RepoViewModel
+import com.rphmelo.githubpop.feature.viewModel.ViewState
 import com.rphmelo.githubpop.feature.utils.StateViewDelegate
 import com.rphmelo.githubpop.feature.utils.fragmentTransaction
 import com.rphmelo.githubpop.utils.EndlessScrollListener
@@ -64,11 +66,7 @@ class RepoFragment : Fragment() {
 
     private fun configureRecyclerView() {
         with(rvRepoList) {
-            val dividerItemDecoration = DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-            addItemDecoration(dividerItemDecoration)
+            addItemDecoration(SpacesItemDecoration(8))
             setHasFixedSize(true)
             adapter = repoListAdapter
             addOnScrollListener(object : EndlessScrollListener(repoListAdapter) {

@@ -1,8 +1,8 @@
 package com.rphmelo.githubpop.di
 
-import com.rphmelo.githubpop.feature.repo.viewModel.BaseViewModel
-import com.rphmelo.githubpop.feature.repo.viewModel.RepoPullRequestViewModel
-import com.rphmelo.githubpop.feature.repo.viewModel.RepoViewModel
+import com.rphmelo.githubpop.feature.viewModel.BaseViewModel
+import com.rphmelo.githubpop.feature.viewModel.RepoPullRequestViewModel
+import com.rphmelo.githubpop.feature.viewModel.RepoViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

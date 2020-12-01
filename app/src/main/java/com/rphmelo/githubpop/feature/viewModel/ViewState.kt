@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.feature.repo.viewModel
+package com.rphmelo.githubpop.feature.viewModel
 
 sealed class ViewState<out T> {
     object Loading : ViewState<Nothing>()

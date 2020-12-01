@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rphmelo.githubpop.R
+import com.rphmelo.githubpop.feature.repoPullRequest.RepoPullRequestFragment
 import com.rphmelo.githubpop.feature.utils.fragmentTransaction
 import kotlinx.android.synthetic.main.activity_repo.*
 

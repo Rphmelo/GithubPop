@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.feature.repo
+package com.rphmelo.githubpop.feature.repoPullRequest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.rphmelo.design.extensions.gone
 import com.rphmelo.design.extensions.visible
+import com.rphmelo.design.utils.SpacesItemDecoration
 import com.rphmelo.domain.entities.Repo
 import com.rphmelo.domain.entities.RepoPullRequest
 import com.rphmelo.githubpop.R
-import com.rphmelo.githubpop.feature.repo.viewModel.RepoPullRequestViewModel
-import com.rphmelo.githubpop.feature.repo.viewModel.ViewState
+import com.rphmelo.githubpop.feature.viewModel.RepoPullRequestViewModel
+import com.rphmelo.githubpop.feature.viewModel.ViewState
 import com.rphmelo.githubpop.feature.utils.StateViewDelegate
 import kotlinx.android.synthetic.main.activity_repo.*
 import kotlinx.android.synthetic.main.fragment_repo_pull_request.*
@@ -66,11 +67,7 @@ class RepoPullRequestFragment : Fragment() {
 
         stateView = SUCCESS
         with(rvRepoPullRequestList) {
-            val dividerItemDecoration = DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-            addItemDecoration(dividerItemDecoration)
+            addItemDecoration(SpacesItemDecoration(8))
             setHasFixedSize(true)
             adapter = repoPullRequestListAdapter.apply {
                 addAll(repoPullRequestList)
@@ -79,12 +76,14 @@ class RepoPullRequestFragment : Fragment() {
     }
 
     private fun setError(throwable: Throwable) {
-        stateView = ERROR
+        stateView =
+            ERROR
         Toast.makeText(context, throwable.message, Toast.LENGTH_LONG).show()
     }
 
     private fun setLoading() {
-        stateView = LOADING
+        stateView =
+            LOADING
     }
 
     private fun showLoading() {

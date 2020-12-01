@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.feature.repo.viewModel
+package com.rphmelo.githubpop.feature.viewModel
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

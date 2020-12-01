@@ -22,5 +22,4 @@ class StateViewDelegate(vararg state: Pair<Int, () -> Unit>) : ReadWriteProperty
         currentState = value
         states[currentState]?.invoke()
     }
-
 }

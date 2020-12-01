@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.feature.repo
+package com.rphmelo.githubpop.feature.repoPullRequest
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

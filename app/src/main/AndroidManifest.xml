@@ -16,8 +16,7 @@
             android:label="@string/repo_screen_title"
             android:screenOrientation="portrait"
             android:name=".feature.repo.RepoActivity"
-            />
-        <activity android:name=".feature.launcher.LauncherActivity">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

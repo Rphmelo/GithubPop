@@ -15,6 +15,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_sub_s"
+        android:layout_marginStart="@dimen/space_six"
+        android:layout_marginEnd="@dimen/space_six"
         >
 
         <com.rphmelo.design.components.UserInfoVertical

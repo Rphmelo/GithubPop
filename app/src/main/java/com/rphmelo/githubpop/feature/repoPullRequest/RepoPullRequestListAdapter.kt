@@ -1,4 +1,4 @@
-package com.rphmelo.githubpop.feature.repo
+package com.rphmelo.githubpop.feature.repoPullRequest
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +12,9 @@ class RepoPullRequestListAdapter : RecyclerView.Adapter<RepoPullRequestListViewH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoPullRequestListViewHolder {
         val view = parent.inflate(R.layout.item_repo_pull_request_list, false)
-        return RepoPullRequestListViewHolder(view)
+        return RepoPullRequestListViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: RepoPullRequestListViewHolder, position: Int) {

@@ -28,13 +28,13 @@ class RepoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
             RepoListViewHolder(view)
         } else {
             val view = parent.inflate(R.layout.item_loading, false)
-            LoadingViewHolder(view)
+            RepoLoadingViewHolder(view)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as? RepoListViewHolder)?.bind(repoList[position], onItemClick)
-        (holder as? LoadingViewHolder)?.progressBar?.visible()
+        (holder as? RepoLoadingViewHolder)?.progressBar?.visible()
     }
 
     override fun getItemCount(): Int = repoList.size
