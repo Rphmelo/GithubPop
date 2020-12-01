@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.rphmelo.design.extensions.gone
+import com.rphmelo.design.extensions.styledTextColor
 import com.rphmelo.design.extensions.visible
 import com.rphmelo.design.utils.SpacesItemDecoration
 import com.rphmelo.domain.entities.Repo
@@ -121,20 +122,28 @@ class RepoPullRequestFragment : Fragment() {
 
     private fun setupViewModel() {
         getPullRequests()
+        viewModel.apply {
+            pullStateCount.observe(this@RepoPullRequestFragment, Observer { pairStateCount ->
+                val stateTextOpen = getString(R.string.states_count_open, pairStateCount.first.toString())
+                val stateTextClosed = getString(R.string.states_count_closed, pairStateCount.second.toString())
+                val stateText = getString(R.string.states_count, stateTextOpen, stateTextClosed)
+                tvRepoStates.text = stateText.styledTextColor(stateTextOpen, resources.getColor(R.color.textWarning))
+            })
 
-        viewModel.state.observe(this, Observer { viewState ->
-            when(viewState) {
-                is ViewState.Success -> {
-                    configureRepoList(viewState.data)
+            state.observe(this@RepoPullRequestFragment, Observer { viewState ->
+                when(viewState) {
+                    is ViewState.Success -> {
+                        configureRepoList(viewState.data)
+                    }
+                    is ViewState.Loading -> {
+                        setLoading()
+                    }
+                    is ViewState.Failed -> {
+                        setError(viewState.throwable)
+                    }
                 }
-                is ViewState.Loading -> {
-                    setLoading()
-                }
-                is ViewState.Failed -> {
-                    setError(viewState.throwable)
-                }
-            }
-        })
+            })
+        }
     }
 
     private fun setToolbar() {

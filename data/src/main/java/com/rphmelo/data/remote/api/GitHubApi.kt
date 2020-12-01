@@ -19,6 +19,7 @@ interface GitHubApi {
     @GET("/repos/{login}/{name}/pulls")
     fun getRepoPullRequests(
         @Path("login") login: String,
-        @Path("name") name: String
+        @Path("name") name: String,
+        @Query("state") state: String = "all"
     ): Observable<List<RepoPullRequestPayload>>
 }
